@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Pamela Vidal</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== HERO MELHORADO ===== */
+.hero-v2 {
+  background: linear-gradient(160deg, #fff0f5 0%, #fce8f0 55%, #f5d9e8 100%);
+  padding: 48px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-v2::before {
+  content:'';
+  position:absolute; top:-100px; right:-100px;
+  width:340px; height:340px; border-radius:50%;
+  background: radial-gradient(circle, rgba(212,121,154,.13), transparent 70%);
+  pointer-events:none;
+}
+.hero-v2::after {
+  content:'';
+  position:absolute; bottom:-80px; left:-80px;
+  width:260px; height:260px; border-radius:50%;
+  background: radial-gradient(circle, rgba(201,168,76,.1), transparent 70%);
+  pointer-events:none;
+}
 
+/* Foto */
+.hero-foto-wrap { position:relative; display:inline-block; margin-bottom:20px; }
+.hero-foto-wrap::after {
+  content:''; position:absolute; inset:-7px; border-radius:50%;
+  border:2px dashed var(--ouro);
+  animation: girar 18s linear infinite;
+}
+@keyframes girar { to { transform:rotate(360deg); } }
+.foto-principal {
+  width:190px; height:190px; border-radius:50%; object-fit:cover;
+  border:5px solid #fff; box-shadow:0 8px 32px rgba(180,100,130,.22);
+}
+.hero-badge {
+  position:absolute; bottom:6px; right:-8px;
+  background:var(--ouro); color:#fff;
+  font-size:.72rem; font-weight:700;
+  padding:4px 12px; border-radius:50px; letter-spacing:.04em;
+  box-shadow:0 2px 8px rgba(201,168,76,.35);
+}
+.hero-v2 .studio-nome { color:var(--rosa); font-size:.95rem; font-weight:600; margin-bottom:6px; }
+.hero-v2 h1 { font-size:2.2rem; color:var(--escuro); line-height:1.2; margin-bottom:10px; }
+.hero-v2 h1 span { color:var(--rosa); }
+.hero-v2 .hero-desc { color:var(--cinza-txt); max-width:400px; margin:0 auto 28px; line-height:1.65; font-size:.95rem; }
+
+/* Botões hero */
+.hero-botoes { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:0; }
+
+/* ===== BOTÃO CURSO ===== */
+.btn-curso {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  background: linear-gradient(135deg, #2d1f27 0%, #4a2d3a 100%);
+  color:#fff; border:none; border-radius:50px;
+  padding:14px 30px; font-size:1rem; font-weight:700;
+  font-family:'DM Sans',sans-serif;
+  box-shadow:0 4px 18px rgba(45,31,39,.35);
+  cursor:pointer; text-decoration:none;
+  transition:all .25s ease;
+  width:100%; max-width:340px; margin:0 auto;
+}
+.btn-curso:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,31,39,.45); color:#fff; }
+.btn-curso .curso-badge {
+  background:var(--ouro); color:#fff;
+  font-size:.7rem; padding:2px 8px; border-radius:50px; font-weight:700;
+}
+
+/* ===== SEÇÃO INSTAGRAM ===== */
+.insta-section {
+  background:#fff;
+  padding:36px 20px;
+  text-align:center;
+  border-top:1px solid var(--cinza-b);
+}
+.insta-section h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; color:var(--escuro); margin-bottom:6px;
+}
+.insta-section p { color:var(--cinza-txt); font-size:.9rem; margin-bottom:20px; }
+
+.insta-link {
+  display:inline-flex; align-items:center; gap:10px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color:#fff; padding:13px 26px; border-radius:50px;
+  font-weight:700; font-size:.95rem; text-decoration:none;
+  box-shadow:0 4px 18px rgba(220,39,67,.3);
+  transition:all .25s ease;
+}
+.insta-link:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(220,39,67,.4); color:#fff; }
+.insta-link svg { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+
+.insta-preview {
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:3px;
+  max-width:400px;
+  margin:24px auto 0;
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.insta-preview .ip-item {
+  aspect-ratio:1;
+  background: linear-gradient(135deg, var(--rosa-claro), var(--cinza-b));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem; color:var(--rosa);
+  position:relative; overflow:hidden;
+  cursor:pointer;
+}
+.insta-preview .ip-item::after {
+  content:''; position:absolute; inset:0;
+  background:rgba(45,31,39,0);
+  transition:background .2s;
+}
+.insta-preview .ip-item:hover::after { background:rgba(45,31,39,.18); }
+
+/* ===== BANNERS ===== */
+.banners-section {
+  padding:32px 20px;
+  background:var(--cinza-f);
+  border-top:1px solid var(--cinza-b);
+}
+.banners-section .bs-titulo {
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; color:var(--escuro); margin-bottom:6px;
+}
+.banners-section .bs-sub { text-align:center; color:var(--cinza-txt); font-size:.88rem; margin-bottom:20px; }
+.banners-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:14px; max-width:860px; margin:0 auto;
+}
+.banner-card { border-radius:var(--radius); overflow:hidden; box-shadow:var(--sombra); position:relative; }
+.banner-card img { width:100%; height:170px; object-fit:cover; display:block; }
+.banner-card .banner-label {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(0deg,rgba(45,31,39,.75),transparent);
+  color:#fff; padding:20px 14px 12px;
+  font-size:.88rem; font-weight:600;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background:var(--escuro); color:rgba(255,255,255,.6);
+  text-align:center; padding:24px 20px;
+  font-size:.82rem; line-height:1.7;
+}
+.site-footer a { color:var(--rosa); }
+
+/* ===== RESP ===== */
+@media(max-width:480px){
+  .hero-v2 h1 { font-size:1.75rem; }
+  .foto-principal { width:155px; height:155px; }
+}
+</style>
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <span class="logo" id="headerNome">Studio Pamela Vidal</span>
+  <nav>
+    <a href="login.html">Entrar</a>
+    <a href="cadastro.html" style="background:var(--rosa);color:#fff;padding:7px 16px;border-radius:50px;font-size:.85rem;">Cadastrar</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-v2">
+  <div class="hero-foto-wrap">
+    <img id="fotoPrincipal"
+         src="https://placehold.co/200x200/fce8f0/d4799a?text=SPV"
+         alt="Studio Pamela Vidal"
+         class="foto-principal">
+    <span class="hero-badge">✨ Beauty Studio</span>
+  </div>
+
+  <p class="studio-nome" id="heroNome">Studio Pamela Vidal</p>
+  <h1>Realce sua <span>beleza</span><br>com quem entende</h1>
+  <p class="hero-desc" id="heroDesc">
+    Agende seu horário online de forma rápida e prática.
+    Experiência premium com café e mimos especiais. 💕
+  </p>
+
+  <div class="hero-botoes" style="margin-bottom:18px;">
+    <a href="cadastro.html" class="btn btn-primary">✨ Criar conta</a>
+    <a href="login.html" class="btn btn-outline">Entrar</a>
+  </div>
+
+  <!-- BOTÃO CURSO -->
+  <a href="curso.html" class="btn-curso">
+    🎓 Conheça nosso Curso
+    <span class="curso-badge">NOVO</span>
+  </a>
+</section>
+
+<!-- BANNERS PROMOÇÕES -->
+<div id="secaoBanners" class="banners-section" style="display:none">
+  <p class="bs-titulo">🌸 Promoções & Eventos</p>
+  <p class="bs-sub">Ofertas exclusivas para você</p>
+  <div class="banners-grid" id="gridBanners"></div>
+</div>
+
+<!-- INSTAGRAM -->
+<section class="insta-section">
+  <h3>Nos siga no Instagram</h3>
+  <p>Fique por dentro das novidades, dicas de beleza e promoções exclusivas!</p>
+
+  <a href="https://instagram.com/Studio_pamelavidal_" target="_blank" class="insta-link">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+    @Studio_pamelavidal_
+  </a>
+
+  <!-- Grid decorativo simulando posts -->
+  <div class="insta-preview">
+    <div class="ip-item">💅</div>
+    <div class="ip-item">🌸</div>
+    <div class="ip-item">✨</div>
+    <div class="ip-item">💄</div>
+    <div class="ip-item">🎀</div>
+    <div class="ip-item">💕</div>
+  </div>
+  <p style="font-size:.78rem;color:var(--cinza-txt);margin-top:12px;">
+    Clique para ver os posts reais no Instagram →
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p><strong style="color:#fff;">Studio Pamela Vidal</strong></p>
+  <p>
+    <a href="https://instagram.com/Studio_pamelavidal_" target="_blank">@Studio_pamelavidal_</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/5551980179922" target="_blank">WhatsApp</a>
+  </p>
+  <p style="margin-top:8px;">© 2026 Studio Pamela Vidal · Todos os direitos reservados</p>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const nome = localStorage.getItem('nomeStudio') || 'Studio Pamela Vidal';
+  document.getElementById('headerNome').textContent = nome;
+  document.getElementById('heroNome').textContent   = nome;
+  document.title = nome;
+
+  const desc = localStorage.getItem('descStudio');
+  if (desc) document.getElementById('heroDesc').textContent = desc;
+
+  const foto = localStorage.getItem('fotoCapa');
+  if (foto) document.getElementById('fotoPrincipal').src = foto;
+
+  // Banners
+  const banners = JSON.parse(localStorage.getItem('banners') || '[]');
+  if (banners.length > 0) {
+    document.getElementById('secaoBanners').style.display = 'block';
+    const grid = document.getElementById('gridBanners');
+    banners.forEach(b => {
+      const div = document.createElement('div');
+      div.className = 'banner-card';
+      div.innerHTML = `<img src="${b.img}" alt="${b.label || ''}">
+        <div class="banner-label">${b.label || ''}</div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  // Redireciona para agenda se já logado
+  if (localStorage.getItem('logado')) {
+    document.querySelector('nav').insertAdjacentHTML('beforeend',
+      `<a href="agenda.html" style="margin-left:10px;background:var(--ouro);color:#fff;padding:7px 16px;border-radius:50px;font-size:.85rem;">Minha Agenda</a>`
+    );
+  }
+});
+</script>
+</body>
+</html>
