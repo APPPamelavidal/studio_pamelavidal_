@@ -6,255 +6,322 @@
 <title>Studio Pamela Vidal</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* ===== HERO MELHORADO ===== */
-.hero-v2 {
-  background: linear-gradient(160deg, #fff0f5 0%, #fce8f0 55%, #f5d9e8 100%);
-  padding: 48px 24px 40px;
+/* ===== HERO ===== */
+.hero {
+  min-height: 92vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 60px 24px 50px;
+  background: linear-gradient(160deg, #fff8fb 0%, var(--rosa-light) 50%, #f9dde8 100%);
+  position: relative; overflow: hidden;
 }
-.hero-v2::before {
-  content:'';
-  position:absolute; top:-100px; right:-100px;
-  width:340px; height:340px; border-radius:50%;
-  background: radial-gradient(circle, rgba(212,121,154,.13), transparent 70%);
-  pointer-events:none;
+.hero-orb {
+  position:absolute; border-radius:50%; pointer-events:none;
 }
-.hero-v2::after {
-  content:'';
-  position:absolute; bottom:-80px; left:-80px;
-  width:260px; height:260px; border-radius:50%;
-  background: radial-gradient(circle, rgba(201,168,76,.1), transparent 70%);
-  pointer-events:none;
+.hero-orb-1 {
+  width:500px; height:500px; top:-150px; right:-150px;
+  background:radial-gradient(circle,rgba(201,107,138,.12),transparent 70%);
+}
+.hero-orb-2 {
+  width:350px; height:350px; bottom:-100px; left:-100px;
+  background:radial-gradient(circle,rgba(196,151,62,.1),transparent 70%);
+}
+.hero-orb-3 {
+  width:200px; height:200px; top:30%; left:5%;
+  background:radial-gradient(circle,rgba(201,107,138,.07),transparent 70%);
 }
 
 /* Foto */
-.hero-foto-wrap { position:relative; display:inline-block; margin-bottom:20px; }
-.hero-foto-wrap::after {
-  content:''; position:absolute; inset:-7px; border-radius:50%;
-  border:2px dashed var(--ouro);
-  animation: girar 18s linear infinite;
+.hero-foto-wrap { position:relative; display:inline-block; margin-bottom:24px; }
+.hero-ring {
+  position:absolute; inset:-10px; border-radius:50%;
+  border:1.5px solid rgba(196,151,62,.4);
+  animation:spin 20s linear infinite;
 }
-@keyframes girar { to { transform:rotate(360deg); } }
-.foto-principal {
-  width:190px; height:190px; border-radius:50%; object-fit:cover;
-  border:5px solid #fff; box-shadow:0 8px 32px rgba(180,100,130,.22);
+.hero-ring-2 {
+  position:absolute; inset:-20px; border-radius:50%;
+  border:1px dashed rgba(201,107,138,.2);
+  animation:spin 30s linear infinite reverse;
 }
-.hero-badge {
-  position:absolute; bottom:6px; right:-8px;
-  background:var(--ouro); color:#fff;
-  font-size:.72rem; font-weight:700;
-  padding:4px 12px; border-radius:50px; letter-spacing:.04em;
-  box-shadow:0 2px 8px rgba(201,168,76,.35);
+@keyframes spin { to{transform:rotate(360deg)} }
+.hero-foto {
+  width:180px; height:180px; border-radius:50%; object-fit:cover;
+  border:5px solid var(--branco); box-shadow:0 12px 40px rgba(180,90,120,.25);
+  display:block; position:relative; z-index:1;
 }
-.hero-v2 .studio-nome { color:var(--rosa); font-size:.95rem; font-weight:600; margin-bottom:6px; }
-.hero-v2 h1 { font-size:2.2rem; color:var(--escuro); line-height:1.2; margin-bottom:10px; }
-.hero-v2 h1 span { color:var(--rosa); }
-.hero-v2 .hero-desc { color:var(--cinza-txt); max-width:400px; margin:0 auto 28px; line-height:1.65; font-size:.95rem; }
-
-/* Botões hero */
-.hero-botoes { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:0; }
-
-/* ===== BOTÃO CURSO ===== */
-.btn-curso {
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  background: linear-gradient(135deg, #2d1f27 0%, #4a2d3a 100%);
-  color:#fff; border:none; border-radius:50px;
-  padding:14px 30px; font-size:1rem; font-weight:700;
-  font-family:'DM Sans',sans-serif;
-  box-shadow:0 4px 18px rgba(45,31,39,.35);
-  cursor:pointer; text-decoration:none;
-  transition:all .25s ease;
-  width:100%; max-width:340px; margin:0 auto;
-}
-.btn-curso:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,31,39,.45); color:#fff; }
-.btn-curso .curso-badge {
-  background:var(--ouro); color:#fff;
-  font-size:.7rem; padding:2px 8px; border-radius:50px; font-weight:700;
+.hero-badge-foto {
+  position:absolute; bottom:4px; right:-4px; z-index:2;
+  background:linear-gradient(135deg,var(--ouro),#a87830);
+  color:#fff; font-size:.7rem; font-weight:700;
+  padding:5px 12px; border-radius:50px;
+  box-shadow:0 4px 12px rgba(196,151,62,.4);
+  white-space:nowrap;
 }
 
-/* ===== SEÇÃO INSTAGRAM ===== */
-.insta-section {
-  background:#fff;
-  padding:36px 20px;
-  text-align:center;
-  border-top:1px solid var(--cinza-b);
+/* Textos hero */
+.hero-eyebrow {
+  font-size:.78rem; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--rosa);
+  margin-bottom:10px; display:block;
 }
-.insta-section h3 {
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem; color:var(--escuro); margin-bottom:6px;
+.hero-title {
+  font-size:3.2rem; line-height:1.1; color:var(--escuro);
+  margin-bottom:16px; font-weight:700;
 }
-.insta-section p { color:var(--cinza-txt); font-size:.9rem; margin-bottom:20px; }
+.hero-title em { color:var(--rosa); font-style:italic; }
+.hero-title .line2 { display:block; font-size:2rem; font-weight:400; color:var(--cinza); }
+.hero-desc {
+  color:var(--cinza); max-width:380px; margin:0 auto 32px;
+  line-height:1.7; font-size:.95rem;
+}
+.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
-.insta-link {
-  display:inline-flex; align-items:center; gap:10px;
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  color:#fff; padding:13px 26px; border-radius:50px;
-  font-weight:700; font-size:.95rem; text-decoration:none;
-  box-shadow:0 4px 18px rgba(220,39,67,.3);
-  transition:all .25s ease;
+/* Floating pills */
+.hero-pills {
+  display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+  margin-top:32px;
 }
-.insta-link:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(220,39,67,.4); color:#fff; }
-.insta-link svg { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+.hero-pill {
+  background:rgba(255,255,255,.8); backdrop-filter:blur(10px);
+  border:1px solid rgba(201,107,138,.15);
+  padding:8px 16px; border-radius:50px;
+  font-size:.8rem; font-weight:500; color:var(--cinza);
+  display:flex; align-items:center; gap:6px;
+}
 
-.insta-preview {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:3px;
-  max-width:400px;
-  margin:24px auto 0;
-  border-radius:var(--radius);
-  overflow:hidden;
+/* ===== SERVIÇOS ===== */
+.servicos-section {
+  padding:70px 24px;
+  background:var(--branco);
 }
-.insta-preview .ip-item {
-  aspect-ratio:1;
-  background: linear-gradient(135deg, var(--rosa-claro), var(--cinza-b));
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.6rem; color:var(--rosa);
-  position:relative; overflow:hidden;
-  cursor:pointer;
+.servicos-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px; max-width:800px; margin:36px auto 0;
 }
-.insta-preview .ip-item::after {
-  content:''; position:absolute; inset:0;
-  background:rgba(45,31,39,0);
-  transition:background .2s;
+.servico-card {
+  background:var(--rosa-pale); border:1.5px solid rgba(201,107,138,.1);
+  border-radius:var(--radius); padding:28px 20px; text-align:center;
+  transition:all var(--trans); cursor:default;
 }
-.insta-preview .ip-item:hover::after { background:rgba(45,31,39,.18); }
+.servico-card:hover {
+  transform:translateY(-4px); border-color:var(--rosa);
+  box-shadow:0 12px 30px rgba(201,107,138,.15);
+}
+.servico-icon { font-size:2.2rem; margin-bottom:12px; display:block; }
+.servico-card h3 { font-size:1.1rem; color:var(--escuro); margin-bottom:6px; }
+.servico-card p { font-size:.82rem; color:var(--cinza); line-height:1.5; }
 
 /* ===== BANNERS ===== */
-.banners-section {
-  padding:32px 20px;
-  background:var(--cinza-f);
-  border-top:1px solid var(--cinza-b);
-}
-.banners-section .bs-titulo {
-  text-align:center;
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem; color:var(--escuro); margin-bottom:6px;
-}
-.banners-section .bs-sub { text-align:center; color:var(--cinza-txt); font-size:.88rem; margin-bottom:20px; }
+.banners-section { padding:60px 24px; background:var(--rosa-pale); }
 .banners-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:14px; max-width:860px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px; max-width:860px; margin:32px auto 0;
 }
-.banner-card { border-radius:var(--radius); overflow:hidden; box-shadow:var(--sombra); position:relative; }
-.banner-card img { width:100%; height:170px; object-fit:cover; display:block; }
-.banner-card .banner-label {
-  position:absolute; bottom:0; left:0; right:0;
-  background:linear-gradient(0deg,rgba(45,31,39,.75),transparent);
-  color:#fff; padding:20px 14px 12px;
-  font-size:.88rem; font-weight:600;
+
+/* ===== INSTAGRAM ===== */
+.insta-section {
+  padding:70px 24px; background:var(--branco); text-align:center;
 }
+.insta-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:6px; max-width:480px; margin:28px auto 24px;
+  border-radius:var(--radius); overflow:hidden;
+}
+.insta-item {
+  aspect-ratio:1; overflow:hidden; position:relative;
+  background:var(--rosa-pale); cursor:pointer;
+}
+.insta-item img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; display:block; }
+.insta-item:hover img { transform:scale(1.06); }
+.insta-item-placeholder {
+  aspect-ratio:1; background:linear-gradient(135deg,var(--rosa-light),var(--cinza-light));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2rem; color:var(--rosa); cursor:pointer; transition:all var(--trans);
+}
+.insta-item-placeholder:hover { filter:brightness(.95); }
+.insta-overlay {
+  position:absolute; inset:0; background:rgba(26,16,24,0);
+  display:flex; align-items:center; justify-content:center;
+  transition:background var(--trans);
+}
+.insta-item:hover .insta-overlay { background:rgba(26,16,24,.25); }
+
+/* ===== CURSO CTA ===== */
+.curso-cta-section {
+  padding:70px 24px;
+  background:linear-gradient(135deg, var(--escuro) 0%, var(--escuro-2) 50%, #3d1f2d 100%);
+  text-align:center; position:relative; overflow:hidden;
+}
+.curso-cta-section::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c96b8a' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.curso-cta-section > * { position:relative; z-index:1; }
+.curso-cta-section .section-title { color:#fff; }
+.curso-cta-section .section-sub { color:rgba(255,255,255,.6); max-width:400px; margin:0 auto 28px; }
 
 /* ===== FOOTER ===== */
-.site-footer {
-  background:var(--escuro); color:rgba(255,255,255,.6);
-  text-align:center; padding:24px 20px;
-  font-size:.82rem; line-height:1.7;
+.footer-inner {
+  max-width:700px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  text-align:left; margin-bottom:28px;
 }
-.site-footer a { color:var(--rosa); }
+.footer-col h4 { color:rgba(255,255,255,.85); font-size:1rem; margin-bottom:10px; }
+.footer-col a { display:block; color:rgba(255,255,255,.45); font-size:.85rem; margin-bottom:6px; transition:color var(--trans); }
+.footer-col a:hover { color:var(--rosa); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:20px; text-align:center; }
 
-/* ===== RESP ===== */
-@media(max-width:480px){
-  .hero-v2 h1 { font-size:1.75rem; }
-  .foto-principal { width:155px; height:155px; }
+@media(max-width:600px){
+  .hero-title { font-size:2.3rem; }
+  .hero-title .line2 { font-size:1.5rem; }
+  .hero-foto { width:150px; height:150px; }
+  .footer-inner { grid-template-columns:1fr; }
+  .insta-grid { max-width:340px; }
 }
 </style>
 </head>
 <body>
-
 <div id="toast-container"></div>
 
-<!-- HEADER -->
 <header class="site-header">
-  <span class="logo" id="headerNome">Studio Pamela Vidal</span>
-  <nav>
+  <div class="header-logo" id="headerNome">Studio <span>Pamela Vidal</span></div>
+  <nav class="header-nav">
+    <a href="curso.html">Curso</a>
     <a href="login.html">Entrar</a>
-    <a href="cadastro.html" style="background:var(--rosa);color:#fff;padding:7px 16px;border-radius:50px;font-size:.85rem;">Cadastrar</a>
+    <a href="cadastro.html" class="nav-cta">Agendar</a>
   </nav>
 </header>
 
 <!-- HERO -->
-<section class="hero-v2">
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
   <div class="hero-foto-wrap">
+    <div class="hero-ring"></div>
+    <div class="hero-ring-2"></div>
     <img id="fotoPrincipal"
-         src="https://placehold.co/200x200/fce8f0/d4799a?text=SPV"
-         alt="Studio Pamela Vidal"
-         class="foto-principal">
-    <span class="hero-badge">✨ Beauty Studio</span>
+         src="https://placehold.co/180x180/f7e0e9/c96b8a?text=SPV"
+         alt="Studio Pamela Vidal" class="hero-foto">
+    <span class="hero-badge-foto">✨ Beauty Studio</span>
   </div>
 
-  <p class="studio-nome" id="heroNome">Studio Pamela Vidal</p>
-  <h1>Realce sua <span>beleza</span><br>com quem entende</h1>
-  <p class="hero-desc" id="heroDesc">
-    Agende seu horário online de forma rápida e prática.
-    Experiência premium com café e mimos especiais. 💕
-  </p>
+  <span class="hero-eyebrow" id="heroNome">Studio Pamela Vidal</span>
+  <h1 class="hero-title">
+    Sua beleza<br>
+    <em>merece</em> o melhor
+    <span class="line2" id="heroDesc">Manicure premium com carinho e dedicação</span>
+  </h1>
 
-  <div class="hero-botoes" style="margin-bottom:18px;">
-    <a href="cadastro.html" class="btn btn-primary">✨ Criar conta</a>
-    <a href="login.html" class="btn btn-outline">Entrar</a>
+  <div class="hero-btns">
+    <a href="cadastro.html" class="btn btn-primary btn-lg">✨ Agendar horário</a>
+    <a href="login.html" class="btn btn-outline btn-lg">Entrar</a>
   </div>
 
-  <!-- BOTÃO CURSO -->
-  <a href="curso.html" class="btn-curso">
-    🎓 Conheça nosso Curso
-    <span class="curso-badge">NOVO</span>
-  </a>
+  <div class="hero-pills">
+    <span class="hero-pill">💅 Manicure & Pedicure</span>
+    <span class="hero-pill">☕ Café incluso</span>
+    <span class="hero-pill">🎁 Mimos especiais</span>
+    <span class="hero-pill">📱 Agendamento online</span>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos-section">
+  <div style="text-align:center;">
+    <span class="section-tag">Nossos Serviços</span>
+    <h2 class="section-title">Tudo que você <em>precisa</em></h2>
+    <p class="section-sub">Experiência premium em cada detalhe do seu atendimento</p>
+  </div>
+  <div class="servicos-grid">
+    <div class="servico-card">
+      <span class="servico-icon">💅</span>
+      <h3>Manicure</h3>
+      <p>Esmaltação tradicional, gel e fibra com acabamento impecável</p>
+    </div>
+    <div class="servico-card">
+      <span class="servico-icon">🦶</span>
+      <h3>Pedicure</h3>
+      <p>Cuidado completo para seus pés, com hidratação e esmaltação</p>
+    </div>
+    <div class="servico-card">
+      <span class="servico-icon">💎</span>
+      <h3>Nail Art</h3>
+      <p>Designs exclusivos e personalizados para cada ocasião especial</p>
+    </div>
+    <div class="servico-card">
+      <span class="servico-icon">✨</span>
+      <h3>Blindagem</h3>
+      <p>Proteção extra para unhas frágeis com durabilidade garantida</p>
+    </div>
+  </div>
 </section>
 
 <!-- BANNERS PROMOÇÕES -->
 <div id="secaoBanners" class="banners-section" style="display:none">
-  <p class="bs-titulo">🌸 Promoções & Eventos</p>
-  <p class="bs-sub">Ofertas exclusivas para você</p>
+  <div style="text-align:center;">
+    <span class="section-tag">Ofertas Exclusivas</span>
+    <h2 class="section-title">🌸 Promoções & <em>Eventos</em></h2>
+  </div>
   <div class="banners-grid" id="gridBanners"></div>
 </div>
 
 <!-- INSTAGRAM -->
 <section class="insta-section">
-  <h3>Nos siga no Instagram</h3>
-  <p>Fique por dentro das novidades, dicas de beleza e promoções exclusivas!</p>
+  <span class="section-tag">Instagram</span>
+  <h2 class="section-title">Nos siga por <em>lá</em> 📸</h2>
+  <p class="section-sub">Fique por dentro das novidades, inspirações e promoções exclusivas</p>
 
-  <a href="https://instagram.com/Studio_pamelavidal_" target="_blank" class="insta-link">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
+  <div class="insta-grid" id="instaGrid">
+    <div class="insta-item-placeholder" onclick="window.open('https://instagram.com/Studio_pamelavidal_','_blank')">💅</div>
+    <div class="insta-item-placeholder" onclick="window.open('https://instagram.com/Studio_pamelavidal_','_blank')">🌸</div>
+    <div class="insta-item-placeholder" onclick="window.open('https://instagram.com/Studio_pamelavidal_','_blank')">✨</div>
+  </div>
+
+  <a href="https://instagram.com/Studio_pamelavidal_" target="_blank" class="btn btn-insta btn-lg">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     @Studio_pamelavidal_
   </a>
+</section>
 
-  <!-- Grid decorativo simulando posts -->
-  <div class="insta-preview">
-    <div class="ip-item">💅</div>
-    <div class="ip-item">🌸</div>
-    <div class="ip-item">✨</div>
-    <div class="ip-item">💄</div>
-    <div class="ip-item">🎀</div>
-    <div class="ip-item">💕</div>
-  </div>
-  <p style="font-size:.78rem;color:var(--cinza-txt);margin-top:12px;">
-    Clique para ver os posts reais no Instagram →
-  </p>
+<!-- CURSO CTA -->
+<section class="curso-cta-section">
+  <span class="section-tag" style="background:rgba(201,107,138,.2);color:var(--rosa-light);">Formação Profissional</span>
+  <h2 class="section-title" style="color:#fff;margin-top:4px;">Quer aprender a <em style="color:var(--rosa-light);">arte</em><br>das unhas?</h2>
+  <p class="section-sub">Conheça o curso da Pamela e transforme sua paixão em profissão</p>
+  <a href="curso.html" class="btn btn-gold btn-lg">🎓 Ver o Curso</a>
 </section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <p><strong style="color:#fff;">Studio Pamela Vidal</strong></p>
-  <p>
-    <a href="https://instagram.com/Studio_pamelavidal_" target="_blank">@Studio_pamelavidal_</a>
-    &nbsp;·&nbsp;
-    <a href="https://wa.me/5551980179922" target="_blank">WhatsApp</a>
-  </p>
-  <p style="margin-top:8px;">© 2026 Studio Pamela Vidal · Todos os direitos reservados</p>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Studio Pamela Vidal</h4>
+      <a href="index.html">Início</a>
+      <a href="cadastro.html">Agendar</a>
+      <a href="curso.html">Curso</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="https://instagram.com/Studio_pamelavidal_" target="_blank">@Studio_pamelavidal_</a>
+      <a href="https://wa.me/5551980179922" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 <strong>Studio Pamela Vidal</strong> · Todos os direitos reservados</p>
+  </div>
 </footer>
 
 <script src="js/app.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const nome = localStorage.getItem('nomeStudio') || 'Studio Pamela Vidal';
-  document.getElementById('headerNome').textContent = nome;
-  document.getElementById('heroNome').textContent   = nome;
+  document.getElementById('headerNome').innerHTML = nome.includes(' ')
+    ? nome.replace(' ', ' <span>') + '</span>'
+    : nome;
+  document.getElementById('heroNome').textContent = nome;
   document.title = nome;
 
   const desc = localStorage.getItem('descStudio');
@@ -271,17 +338,29 @@ window.addEventListener('DOMContentLoaded', () => {
     banners.forEach(b => {
       const div = document.createElement('div');
       div.className = 'banner-card';
-      div.innerHTML = `<img src="${b.img}" alt="${b.label || ''}">
-        <div class="banner-label">${b.label || ''}</div>`;
+      div.innerHTML = `<img src="${b.img}" alt="${b.label||''}"><div class="banner-label">${b.label||''}</div>`;
       grid.appendChild(div);
     });
   }
 
-  // Redireciona para agenda se já logado
+  // Fotos Instagram
+  const instaFotos = JSON.parse(localStorage.getItem('instaFotos') || '[]');
+  if (instaFotos.length > 0) {
+    const grid = document.getElementById('instaGrid');
+    grid.innerHTML = '';
+    instaFotos.slice(0,3).forEach(f => {
+      const div = document.createElement('div');
+      div.className = 'insta-item';
+      div.onclick = () => window.open('https://instagram.com/Studio_pamelavidal_','_blank');
+      div.innerHTML = `<img src="${f.img}" alt="post"><div class="insta-overlay"></div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  // Botão agenda se logado
   if (localStorage.getItem('logado')) {
-    document.querySelector('nav').insertAdjacentHTML('beforeend',
-      `<a href="agenda.html" style="margin-left:10px;background:var(--ouro);color:#fff;padding:7px 16px;border-radius:50px;font-size:.85rem;">Minha Agenda</a>`
-    );
+    document.querySelector('.header-nav .nav-cta').href = 'agenda.html';
+    document.querySelector('.header-nav .nav-cta').textContent = 'Minha Agenda';
   }
 });
 </script>
