@@ -1,3 +1,4 @@
+
 // =====================
 // TOAST (substitui alert)
 // =====================
@@ -103,4 +104,3 @@ document.addEventListener('keydown', e => {
     if (typeof cadastrar === 'function') cadastrar();
   }
 });
-
