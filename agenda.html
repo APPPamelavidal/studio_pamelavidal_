@@ -3,354 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agendar — Studio</title>
+<title>Agendar — Studio Pamela Vidal</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.agenda-hero {
+  background:linear-gradient(135deg,var(--rosa-pale) 0%,var(--rosa-light) 100%);
+  padding:36px 24px 28px; text-align:center;
+  border-bottom:1px solid rgba(201,107,138,.1);
+}
+.agenda-hero h1 { font-size:2rem; color:var(--escuro); margin-bottom:4px; }
+.agenda-hero p  { color:var(--cinza); font-size:.9rem; }
+.agenda-steps {
+  display:flex; gap:6px; justify-content:center; margin-top:18px; flex-wrap:wrap;
+}
+.step-dot {
+  width:32px; height:32px; border-radius:50%;
+  border:2px solid var(--cinza-light); background:var(--branco);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.75rem; font-weight:700; color:var(--cinza);
+  transition:all var(--trans);
+}
+.step-dot.ativo { border-color:var(--rosa); background:var(--rosa); color:#fff; }
+.step-dot.done  { border-color:var(--rosa); background:var(--rosa-light); color:var(--rosa); }
+.step-line { width:30px; height:2px; background:var(--cinza-light); align-self:center; border-radius:2px; }
+</style>
 </head>
 <body>
 <div id="toast-container"></div>
 
 <header class="site-header">
-  <span class="logo" id="headerNome">Studio</span>
-  <nav>
-    <span id="saudacao" style="font-size:.88rem;color:var(--cinza-txt);"></span>
-    <a href="#" onclick="sair()" style="margin-left:14px;color:var(--cinza-txt);font-size:.85rem;">Sair</a>
+  <div class="header-logo" id="headerNome">Studio <span>Pamela Vidal</span></div>
+  <nav class="header-nav">
+    <span id="saudacao" style="font-size:.83rem;color:var(--cinza);"></span>
+    <a href="#" onclick="sair()" style="font-size:.83rem;color:var(--cinza);">Sair</a>
   </nav>
 </header>
 
+<div class="agenda-hero">
+  <h1>Agende seu horário 💅</h1>
+  <p>Escolha o dia, horário e suas preferências</p>
+  <div class="agenda-steps">
+    <div class="step-dot ativo" id="step1">1</div>
+    <div class="step-line"></div>
+    <div class="step-dot" id="step2">2</div>
+    <div class="step-line"></div>
+    <div class="step-dot" id="step3">3</div>
+  </div>
+</div>
+
 <div class="container-wide">
 
-  <a href="index.html" class="btn-voltar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Início
-  </a>
-
-  <!-- NOVO AGENDAMENTO -->
-  <div class="admin-section">
-    <h3>📅 Escolher Horário</h3>
-
-    <p style="font-size:.88rem;color:var(--cinza-txt);margin-bottom:14px;">Selecione um dia disponível:</p>
-    <div class="datas-chips" id="datasChips">
-      <p style="color:var(--cinza-txt);font-size:.9rem;">Nenhum horário disponível no momento.</p>
+  <!-- PROMOÇÕES -->
+  <div id="secaoPromos" style="display:none;margin-top:20px;">
+    <div class="admin-section" style="background:linear-gradient(135deg,#fff8fb,var(--rosa-light));border:1.5px solid rgba(201,107,138,.2);">
+      <div class="admin-section-title">🎉 Suas Promoções Exclusivas</div>
+      <div id="listaPromos"></div>
     </div>
+  </div>
 
-    <div id="horasSection" style="display:none">
-      <p style="font-size:.88rem;color:var(--cinza-txt);margin-bottom:10px;">Horários disponíveis neste dia:</p>
+  <!-- PASSO 1: DATA -->
+  <div class="admin-section" style="margin-top:20px;">
+    <div class="admin-section-title">📅 Escolha o dia</div>
+    <div class="datas-chips" id="datasChips">
+      <p style="color:var(--cinza);font-size:.9rem;">Nenhum horário disponível no momento.</p>
+    </div>
+    <div id="horasSection" style="display:none;">
+      <hr class="divider">
+      <p style="font-size:.85rem;color:var(--cinza);margin-bottom:12px;font-weight:600;">Horários disponíveis:</p>
       <div id="horasDisponiveis"></div>
     </div>
+  </div>
 
-    <hr class="divider">
+  <!-- PASSO 2: PREFERÊNCIAS -->
+  <div class="admin-section" id="secaoPrefs" style="display:none;">
+    <div class="admin-section-title">☕ Suas preferências</div>
 
-    <!-- Café -->
-    <h3>☕ Seu café preferido</h3>
-    <p style="font-size:.85rem;color:var(--cinza-txt);margin-bottom:12px;">Escolha sua bebida para o atendimento:</p>
+    <p style="font-size:.85rem;font-weight:600;color:var(--cinza);margin-bottom:10px;">Bebida do atendimento:</p>
     <div class="opcoes-grid" id="opcoesCafe"></div>
 
-    <!-- Brindes -->
-    <h3>🎁 Mimo especial</h3>
-    <p style="font-size:.85rem;color:var(--cinza-txt);margin-bottom:12px;">Escolha um brinde do seu agendamento:</p>
+    <p style="font-size:.85rem;font-weight:600;color:var(--cinza);margin-bottom:10px;margin-top:6px;">Mimo especial:</p>
     <div class="opcoes-grid" id="opcoesBrindes"></div>
 
-    <div class="field" style="margin-top:4px">
+    <div class="field" style="margin-top:8px;">
       <label>Observações (opcional)</label>
-      <textarea id="obsAgend" placeholder="Ex: cor de esmalte preferida, alergia, etc."></textarea>
+      <textarea id="obsAgend" placeholder="Ex: cor preferida, alergia, algum detalhe especial..."></textarea>
     </div>
+  </div>
 
-    <button class="form-btn gold" id="btnAgendar" onclick="confirmarAgendamento()" style="display:none">
+  <!-- CONFIRMAR -->
+  <div id="secaoConfirmar" style="display:none;margin-bottom:24px;">
+    <button class="btn btn-primary btn-full btn-lg" onclick="confirmarAgendamento()">
       ✅ Confirmar Agendamento
     </button>
   </div>
 
-  <!-- PROMOÇÕES RECEBIDAS -->
-  <div class="admin-section" id="secaoPromos" style="display:none">
-    <h3>🎉 Suas Promoções Exclusivas</h3>
-    <div id="listaPromos"></div>
-  </div>
-
   <!-- MEUS AGENDAMENTOS -->
   <div class="admin-section">
-    <h3>📋 Meus Agendamentos</h3>
+    <div class="admin-section-title">📋 Meus Agendamentos</div>
     <div id="meusAgendamentos">
-      <div class="empty-state">
-        <div class="es-icon">🗓️</div>
-        <p>Você ainda não tem agendamentos.</p>
-      </div>
+      <div class="empty-state"><div class="es-icon">🗓️</div><p>Você ainda não tem agendamentos.</p></div>
     </div>
   </div>
 
 </div>
 
+<!-- MODAL CANCELAMENTO -->
+<div class="modal-overlay" id="modalCancelar">
+  <div class="modal-box">
+    <h3 class="modal-title">Cancelar agendamento?</h3>
+    <p class="modal-sub">Esta ação não pode ser desfeita. O horário ficará disponível novamente.</p>
+    <div style="display:flex;gap:10px;margin-top:8px;">
+      <button class="btn btn-danger btn-full" onclick="confirmarCancelamento()">Sim, cancelar</button>
+      <button class="btn btn-outline btn-full" onclick="fecharModalCancelar()">Voltar</button>
+    </div>
+  </div>
+</div>
+
 <script src="js/app.js"></script>
 <script>
-  let dataSelecionada = null;
-  let horaSelecionada = null;
-  let cafeSelecionado = null;
-  let brindeSelecionado = null;
+let dataSelecionada = null, horaSelecionada = null;
+let cafeSelecionado = null, brindeSelecionado = null;
+let agendParaCancelar = null;
 
-  window.addEventListener('DOMContentLoaded', () => {
-    // Verifica login
-    if (!localStorage.getItem('logado')) {
-      window.location.href = 'login.html';
-      return;
-    }
+window.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('logado')) { window.location.href = 'login.html'; return; }
+  const u = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
+  const nome = localStorage.getItem('nomeStudio') || 'Studio Pamela Vidal';
+  document.getElementById('headerNome').innerHTML = nome;
+  document.title = 'Agendar — ' + nome;
+  document.getElementById('saudacao').textContent = 'Olá, ' + (u.nome || '') + ' 💕';
+  carregarDatasChips();
+  carregarOpcoesCliente();
+  carregarMeusAgendamentos();
+  carregarPromos();
+});
 
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-    const nome = localStorage.getItem('nomeStudio') || 'Studio';
-    document.getElementById('headerNome').textContent = nome;
-    document.title = 'Agendar — ' + nome;
-    document.getElementById('saudacao').textContent = 'Olá, ' + (usuario.nome || '');
-
-    carregarDatasChips();
-    carregarOpcoesCliente();
-    carregarMeusAgendamentos();
-    carregarPromos();
+function carregarDatasChips() {
+  const horarios    = JSON.parse(localStorage.getItem('horarios')    || '[]');
+  const agendamentos= JSON.parse(localStorage.getItem('agendamentos')|| '[]');
+  const cont = document.getElementById('datasChips');
+  const livres = horarios.filter(h => !agendamentos.find(a => a.data===h.data && a.hora===h.hora));
+  const datas  = [...new Set(livres.map(h=>h.data))].sort();
+  if (!datas.length) { cont.innerHTML='<p style="color:var(--cinza);font-size:.9rem;">Nenhum horário disponível no momento.</p>'; return; }
+  cont.innerHTML='';
+  datas.forEach(data => {
+    const btn = document.createElement('button');
+    btn.className = 'data-chip';
+    btn.textContent = formatarData(data);
+    btn.onclick = () => selecionarData(data, btn);
+    cont.appendChild(btn);
   });
+}
 
-  function carregarDatasChips() {
-    const horarios = JSON.parse(localStorage.getItem('horarios') || '[]');
-    const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
-    const container = document.getElementById('datasChips');
+function selecionarData(data, el) {
+  dataSelecionada = data; horaSelecionada = null;
+  document.querySelectorAll('.data-chip').forEach(c=>c.classList.remove('ativo'));
+  el.classList.add('ativo');
+  document.getElementById('step1').className = 'step-dot done';
+  document.getElementById('step2').className = 'step-dot ativo';
 
-    // Filtra horários livres
-    const livres = horarios.filter(h => {
-      return !agendamentos.find(a => a.data === h.data && a.hora === h.hora);
-    });
+  const horarios    = JSON.parse(localStorage.getItem('horarios')    || '[]');
+  const agendamentos= JSON.parse(localStorage.getItem('agendamentos')|| '[]');
+  const horas = horarios.filter(h=>h.data===data && !agendamentos.find(a=>a.data===h.data&&a.hora===h.hora)).map(h=>h.hora).sort();
 
-    // Agrupa por data
-    const datas = [...new Set(livres.map(h => h.data))].sort();
+  const sec  = document.getElementById('horasSection');
+  const cont = document.getElementById('horasDisponiveis');
+  sec.style.display='block'; cont.innerHTML='';
+  horas.forEach(hora => {
+    const card = document.createElement('div');
+    card.className = 'horario-card';
+    card.innerHTML = `
+      <div><div class="hc-data">${hora}</div><div class="hc-hora">${formatarData(data)}</div></div>
+      <button class="btn btn-outline btn-sm" onclick="selecionarHora('${hora}',this)">Selecionar</button>`;
+    cont.appendChild(card);
+  });
+  document.getElementById('secaoPrefs').style.display='none';
+  document.getElementById('secaoConfirmar').style.display='none';
+}
 
-    if (datas.length === 0) {
-      container.innerHTML = '<p style="color:var(--cinza-txt);font-size:.9rem;">Nenhum horário disponível no momento.</p>';
-      return;
-    }
+function selecionarHora(hora, btn) {
+  horaSelecionada = hora;
+  document.querySelectorAll('#horasDisponiveis .btn').forEach(b=>{b.textContent='Selecionar';b.className='btn btn-outline btn-sm';});
+  btn.textContent='✓ Selecionado'; btn.className='btn btn-primary btn-sm';
+  document.getElementById('step2').className = 'step-dot done';
+  document.getElementById('step3').className = 'step-dot ativo';
+  document.getElementById('secaoPrefs').style.display='block';
+  document.getElementById('secaoConfirmar').style.display='block';
+  document.getElementById('secaoPrefs').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-    container.innerHTML = '';
-    datas.forEach(data => {
-      const chip = document.createElement('button');
-      chip.className = 'data-chip';
-      chip.textContent = formatarData(data);
-      chip.onclick = () => selecionarData(data, chip);
-      container.appendChild(chip);
-    });
-  }
+function carregarOpcoesCliente() {
+  const defCafe   = [{emoji:'☕',nome:'Café preto'},{emoji:'🥛',nome:'Café com leite'},{emoji:'🍵',nome:'Chá'},{emoji:'💧',nome:'Água'},{emoji:'🧃',nome:'Suco'}];
+  const defBrinde = [{emoji:'💅',nome:'Esmalte'},{emoji:'🌸',nome:'Perfume'},{emoji:'🍫',nome:'Chocolate'},{emoji:'🎀',nome:'Laço'}];
+  const cafes   = JSON.parse(localStorage.getItem('opcoesCafe')    || '[]');
+  const brindes = JSON.parse(localStorage.getItem('opcoesBrindes') || '[]');
+  renderOpcoes('opcoesCafe',    cafes.length   ? cafes   : defCafe,   v=>{cafeSelecionado=v;});
+  renderOpcoes('opcoesBrindes', brindes.length ? brindes : defBrinde, v=>{brindeSelecionado=v;});
+}
 
-  function selecionarData(data, chipEl) {
-    dataSelecionada = data;
-    horaSelecionada = null;
-    document.querySelectorAll('.data-chip').forEach(c => c.classList.remove('ativo'));
-    chipEl.classList.add('ativo');
+function renderOpcoes(id, lista, onSel) {
+  const cont = document.getElementById(id); cont.innerHTML='';
+  lista.forEach(item => {
+    const div = document.createElement('div');
+    div.className='opcao-item';
+    div.innerHTML=`<span class="oi-emoji">${item.emoji||'•'}</span>${item.nome}`;
+    div.onclick=()=>{ cont.querySelectorAll('.opcao-item').forEach(d=>d.classList.remove('selecionado')); div.classList.add('selecionado'); onSel(item.nome); };
+    cont.appendChild(div);
+  });
+}
 
-    const horarios = JSON.parse(localStorage.getItem('horarios') || '[]');
-    const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+function confirmarAgendamento() {
+  if (!dataSelecionada || !horaSelecionada) { toast('Selecione data e horário','err'); return; }
+  if (!cafeSelecionado) { toast('Escolha sua bebida ☕','err'); return; }
+  const u = JSON.parse(localStorage.getItem('usuarioLogado')||'{}');
+  const agend = {
+    id: Date.now(), nomeCliente:u.nome, celular:u.celular,
+    data:dataSelecionada, hora:horaSelecionada,
+    cafe:cafeSelecionado, brinde:brindeSelecionado||'Nenhum',
+    obs:document.getElementById('obsAgend').value.trim(),
+    criadoEm:new Date().toISOString()
+  };
+  const lista = JSON.parse(localStorage.getItem('agendamentos')||'[]');
+  if (lista.find(a=>a.data===dataSelecionada&&a.hora===horaSelecionada)) { toast('Horário já ocupado! Escolha outro.','err'); carregarDatasChips(); return; }
+  lista.push(agend);
+  localStorage.setItem('agendamentos', JSON.stringify(lista));
+  toast('Agendamento confirmado! 💕 Abrindo WhatsApp...','ok');
+  // Reset
+  dataSelecionada=null; horaSelecionada=null; cafeSelecionado=null; brindeSelecionado=null;
+  document.getElementById('obsAgend').value='';
+  document.getElementById('horasSection').style.display='none';
+  document.getElementById('secaoPrefs').style.display='none';
+  document.getElementById('secaoConfirmar').style.display='none';
+  document.querySelectorAll('.opcao-item').forEach(d=>d.classList.remove('selecionado'));
+  document.querySelectorAll('.data-chip').forEach(c=>c.classList.remove('ativo'));
+  ['step1','step2','step3'].forEach((s,i)=>{ document.getElementById(s).className = i===0 ? 'step-dot ativo' : 'step-dot'; });
+  carregarDatasChips(); carregarMeusAgendamentos();
+  enviarParaGoogleSheets(agend);
+  setTimeout(()=>abrirWhatsApp(agend), 800);
+}
 
-    const horas = horarios
-      .filter(h => h.data === data && !agendamentos.find(a => a.data === h.data && a.hora === h.hora))
-      .map(h => h.hora)
-      .sort();
+function abrirWhatsApp(a) {
+  const msg = `🌸 *Novo Agendamento!*\n\n👤 *Nome:* ${a.nomeCliente}\n📱 *Celular:* ${a.celular}\n📅 *Data:* ${formatarData(a.data)}\n⏰ *Horário:* ${a.hora}\n☕ *Café:* ${a.cafe}\n🎁 *Brinde:* ${a.brinde}${a.obs?'\n📝 *Obs:* '+a.obs:''}\n\nAté lá! 💕`;
+  window.open(`https://wa.me/5551980179922?text=${encodeURIComponent(msg)}`,'_blank');
+}
 
-    const sec = document.getElementById('horasSection');
-    const cont = document.getElementById('horasDisponiveis');
-    sec.style.display = 'block';
-    cont.innerHTML = '';
-
-    horas.forEach(hora => {
-      const card = document.createElement('div');
-      card.className = 'horario-card';
-      card.style.cursor = 'pointer';
-      card.innerHTML = `
-        <div>
-          <div class="hc-data">${hora}</div>
-          <div class="hc-hora">${formatarData(data)}</div>
-        </div>
-        <button class="btn btn-outline" style="padding:8px 18px;font-size:.85rem;" onclick="selecionarHora('${hora}', this)">
-          Selecionar
-        </button>`;
-      cont.appendChild(card);
-    });
-
-    atualizarBtnAgendar();
-  }
-
-  function selecionarHora(hora, btn) {
-    horaSelecionada = hora;
-    document.querySelectorAll('#horasDisponiveis .btn').forEach(b => {
-      b.textContent = 'Selecionar';
-      b.className = 'btn btn-outline';
-      b.style.cssText = 'padding:8px 18px;font-size:.85rem;';
-    });
-    btn.textContent = '✓ Selecionado';
-    btn.className = 'btn btn-primary';
-    btn.style.cssText = 'padding:8px 18px;font-size:.85rem;';
-    atualizarBtnAgendar();
-  }
-
-  function carregarOpcoesCliente() {
-    const cafes   = JSON.parse(localStorage.getItem('opcoesCafe')    || '[]');
-    const brindes = JSON.parse(localStorage.getItem('opcoesBrindes') || '[]');
-
-    const defaultCafe = [
-      {emoji:'☕',nome:'Café preto'},
-      {emoji:'🥛',nome:'Café com leite'},
-      {emoji:'🍵',nome:'Chá'},
-      {emoji:'💧',nome:'Água'},
-      {emoji:'🧃',nome:'Suco'},
-    ];
-    const defaultBrinde = [
-      {emoji:'💅',nome:'Esmalte'},
-      {emoji:'🌸',nome:'Perfume'},
-      {emoji:'🍫',nome:'Chocolate'},
-      {emoji:'🎀',nome:'Laço'},
-    ];
-
-    const listaCafe   = cafes.length   ? cafes   : defaultCafe;
-    const listaBrinde = brindes.length ? brindes : defaultBrinde;
-
-    renderOpcoes('opcoesCafe', listaCafe, val => { cafeSelecionado = val; atualizarBtnAgendar(); });
-    renderOpcoes('opcoesBrindes', listaBrinde, val => { brindeSelecionado = val; });
-  }
-
-  function renderOpcoes(containerId, lista, onSelect) {
-    const cont = document.getElementById(containerId);
-    cont.innerHTML = '';
-    lista.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'opcao-item';
-      div.innerHTML = `<span class="oi-emoji">${item.emoji || '•'}</span>${item.nome}`;
-      div.onclick = () => {
-        cont.querySelectorAll('.opcao-item').forEach(d => d.classList.remove('selecionado'));
-        div.classList.add('selecionado');
-        onSelect(item.nome);
-      };
-      cont.appendChild(div);
-    });
-  }
-
-  function atualizarBtnAgendar() {
-    const btn = document.getElementById('btnAgendar');
-    btn.style.display = (dataSelecionada && horaSelecionada && cafeSelecionado) ? 'block' : 'none';
-  }
-
-  function confirmarAgendamento() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-    const obs = document.getElementById('obsAgend').value.trim();
-
-    const agendamento = {
-      id: Date.now(),
-      nomeCliente: usuario.nome,
-      celular: usuario.celular,
-      data: dataSelecionada,
-      hora: horaSelecionada,
-      cafe: cafeSelecionado,
-      brinde: brindeSelecionado || 'Nenhum',
-      obs: obs,
-      criadoEm: new Date().toISOString()
-    };
-
-    const lista = JSON.parse(localStorage.getItem('agendamentos') || '[]');
-    const ocupado = lista.find(a => a.data === dataSelecionada && a.hora === horaSelecionada);
-    if (ocupado) {
-      toast('Este horário já foi agendado. Escolha outro!', 'err');
-      carregarDatasChips();
-      return;
-    }
-
-    lista.push(agendamento);
-    localStorage.setItem('agendamentos', JSON.stringify(lista));
-
-    toast('Agendamento confirmado! Abrindo WhatsApp... 💕', 'ok');
-
-    // Reset
-    dataSelecionada = null;
-    horaSelecionada = null;
-    cafeSelecionado = null;
-    brindeSelecionado = null;
-    document.getElementById('obsAgend').value = '';
-    document.getElementById('horasSection').style.display = 'none';
-    document.getElementById('btnAgendar').style.display = 'none';
-    document.querySelectorAll('.opcao-item').forEach(d => d.classList.remove('selecionado'));
-
-    carregarDatasChips();
-    carregarMeusAgendamentos();
-    enviarParaGoogleSheets(agendamento);
-
-    // Abre WhatsApp com mensagem pronta para a cliente enviar
-    setTimeout(() => abrirWhatsAppAgendamento(agendamento), 800);
-  }
-
-  function abrirWhatsAppAgendamento(a) {
-    const numero = '5551980179922';
-    const msg = `🌸 *Novo Agendamento!*\n\n`
-      + `👤 *Nome:* ${a.nomeCliente}\n`
-      + `📱 *Celular:* ${a.celular}\n`
-      + `📅 *Data:* ${formatarData(a.data)}\n`
-      + `⏰ *Horário:* ${a.hora}\n`
-      + `☕ *Café:* ${a.cafe}\n`
-      + `🎁 *Brinde:* ${a.brinde}\n`
-      + (a.obs ? `📝 *Obs:* ${a.obs}\n` : '')
-      + `\nAté lá! 💕`;
-    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-
-  function carregarPromos() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-    const todasPromos = JSON.parse(localStorage.getItem('promos') || '[]');
-    // Filtra promos para esta cliente (por celular) ou para todas
-    const minhas = todasPromos.filter(p =>
-      p.celular === usuario.celular || p.celular === 'todas'
-    );
-
-    const secao = document.getElementById('secaoPromos');
-    const lista  = document.getElementById('listaPromos');
-
-    if (minhas.length === 0) { secao.style.display = 'none'; return; }
-    secao.style.display = 'block';
-
-    lista.innerHTML = minhas.reverse().map(p => `
-      <div class="agend-card" style="border-left:4px solid var(--ouro);margin-bottom:12px;">
-        <h4 style="color:var(--ouro-esc);">🎉 ${p.titulo}</h4>
-        <p style="margin-top:6px;line-height:1.6;">${p.mensagem}</p>
-        <div class="ac-tags" style="margin-top:10px;">
-          <span class="ac-tag">${p.enviadoEm ? new Date(p.enviadoEm).toLocaleDateString('pt-BR') : ''}</span>
-        </div>
+function carregarMeusAgendamentos() {
+  const u = JSON.parse(localStorage.getItem('usuarioLogado')||'{}');
+  const lista = JSON.parse(localStorage.getItem('agendamentos')||'[]').filter(a=>a.celular===u.celular).reverse();
+  const cont = document.getElementById('meusAgendamentos');
+  if (!lista.length) { cont.innerHTML='<div class="empty-state"><div class="es-icon">🗓️</div><p>Você ainda não tem agendamentos.</p></div>'; return; }
+  cont.innerHTML = lista.map(a => {
+    const podeCanc = podeCancelar(a.data, a.hora);
+    return `<div class="agend-card">
+      <h4>📅 ${formatarData(a.data)} às ${a.hora}</h4>
+      <p>☕ ${a.cafe} &nbsp;|&nbsp; 🎁 ${a.brinde}</p>
+      ${a.obs?`<p>📝 ${a.obs}</p>`:''}
+      <div class="ac-tags" style="justify-content:space-between;align-items:center;">
+        <span class="ac-tag">✅ Confirmado</span>
+        ${podeCanc ? `<button class="btn btn-danger btn-sm" onclick="abrirModalCancelar(${a.id})">Cancelar</button>` : `<span class="ac-tag" style="color:#c62828;">⚠️ Fora do prazo de cancelamento</span>`}
       </div>
-    `).join('');
-  }
+    </div>`;
+  }).join('');
+}
 
-  function carregarMeusAgendamentos() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-    const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
-    const meus = agendamentos.filter(a => a.celular === usuario.celular).reverse();
+function podeCancelar(data, hora) {
+  const agendDt = new Date(`${data}T${hora}:00`);
+  const agora   = new Date();
+  const diff    = (agendDt - agora) / 36e5; // horas
+  return diff >= 12;
+}
 
-    const cont = document.getElementById('meusAgendamentos');
-    if (meus.length === 0) {
-      cont.innerHTML = `<div class="empty-state"><div class="es-icon">🗓️</div><p>Você ainda não tem agendamentos.</p></div>`;
-      return;
-    }
+function abrirModalCancelar(id) {
+  agendParaCancelar = id;
+  document.getElementById('modalCancelar').classList.add('open');
+}
+function fecharModalCancelar() {
+  agendParaCancelar = null;
+  document.getElementById('modalCancelar').classList.remove('open');
+}
+function confirmarCancelamento() {
+  const lista = JSON.parse(localStorage.getItem('agendamentos')||'[]').filter(a=>a.id!==agendParaCancelar);
+  localStorage.setItem('agendamentos', JSON.stringify(lista));
+  toast('Agendamento cancelado.','info');
+  fecharModalCancelar();
+  carregarMeusAgendamentos();
+  carregarDatasChips();
+}
 
-    cont.innerHTML = meus.map(a => `
-      <div class="agend-card">
-        <h4>📅 ${formatarData(a.data)} às ${a.hora}</h4>
-        <p>☕ Café: ${a.cafe}</p>
-        <p>🎁 Brinde: ${a.brinde}</p>
-        ${a.obs ? `<p>📝 ${a.obs}</p>` : ''}
-        <div class="ac-tags">
-          <span class="ac-tag">Confirmado ✅</span>
-        </div>
-      </div>
-    `).join('');
-  }
+function carregarPromos() {
+  const u = JSON.parse(localStorage.getItem('usuarioLogado')||'{}');
+  const promos = JSON.parse(localStorage.getItem('promos')||'[]').filter(p=>p.celular===u.celular||p.celular==='todas');
+  if (!promos.length) return;
+  document.getElementById('secaoPromos').style.display='block';
+  document.getElementById('listaPromos').innerHTML = promos.reverse().map(p=>`
+    <div class="agend-card" style="border-left:4px solid var(--ouro);margin-bottom:10px;">
+      <h4 style="color:var(--ouro);">🎉 ${p.titulo}</h4>
+      <p style="margin-top:6px;line-height:1.6;">${p.mensagem}</p>
+    </div>`).join('');
+}
 
-  function sair() {
-    localStorage.removeItem('logado');
-    localStorage.removeItem('usuarioLogado');
-    window.location.href = 'index.html';
-  }
-
-  function formatarData(dataStr) {
-    if (!dataStr) return '';
-    const [y, m, d] = dataStr.split('-');
-    return `${d}/${m}/${y}`;
-  }
+function sair() { localStorage.removeItem('logado'); localStorage.removeItem('usuarioLogado'); window.location.href='index.html'; }
+function formatarData(d) { if(!d)return''; const[y,m,dd]=d.split('-'); return`${dd}/${m}/${y}`; }
 </script>
 </body>
 </html>
-
