@@ -6,342 +6,194 @@
 <title>Curso — Studio Pamela Vidal</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* ===== CURSO PAGE ===== */
 .curso-hero {
-  background: linear-gradient(160deg, #2d1f27 0%, #4a2d3a 60%, #6b3d52 100%);
-  padding: 52px 24px 44px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  min-height:70vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center;
+  padding:60px 24px;
+  background:linear-gradient(160deg,var(--escuro) 0%,var(--escuro-2) 60%,#4a2035 100%);
+  position:relative; overflow:hidden;
 }
 .curso-hero::before {
-  content:'';
-  position:absolute; top:-80px; right:-80px;
-  width:300px; height:300px; border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,76,.18),transparent 70%);
-  pointer-events:none;
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(201,107,138,.15),transparent 60%);
 }
 .curso-hero::after {
-  content:'';
-  position:absolute; bottom:-60px; left:-60px;
-  width:240px; height:240px; border-radius:50%;
-  background:radial-gradient(circle,rgba(212,121,154,.15),transparent 70%);
-  pointer-events:none;
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 20% 80%,rgba(196,151,62,.1),transparent 50%);
 }
-.curso-tag {
-  display:inline-block;
-  background:var(--ouro); color:#fff;
-  font-size:.78rem; font-weight:700; letter-spacing:.06em;
-  padding:5px 16px; border-radius:50px; margin-bottom:18px;
-  text-transform:uppercase;
-}
-.curso-hero h1 {
-  font-size:2.3rem; color:#fff; line-height:1.2; margin-bottom:14px;
-}
-.curso-hero h1 span { color:var(--ouro); }
-.curso-hero p {
-  color:rgba(255,255,255,.75); max-width:460px;
-  margin:0 auto 32px; line-height:1.7; font-size:.97rem;
-}
+.curso-hero>*{position:relative;z-index:1;}
+.curso-tag { display:inline-block; background:rgba(201,107,138,.2); color:var(--rosa-light); font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:6px 16px; border-radius:50px; margin-bottom:18px; border:1px solid rgba(201,107,138,.3); }
+.curso-hero h1 { font-size:3rem; color:#fff; line-height:1.1; margin-bottom:16px; }
+.curso-hero h1 em { color:var(--rosa-light); font-style:italic; }
+.curso-hero p { color:rgba(255,255,255,.65); max-width:440px; margin:0 auto 32px; line-height:1.7; font-size:.97rem; }
+.curso-badges { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+.curso-badge-item { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.8); padding:7px 16px; border-radius:50px; font-size:.82rem; }
 
-/* Badges */
-.curso-badges {
-  display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:32px;
-}
-.curso-badge-item {
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);
-  padding:7px 16px; border-radius:50px;
-  font-size:.83rem; font-weight:500;
-}
+.video-section { padding:60px 24px; background:var(--branco); text-align:center; }
+.video-wrap { max-width:640px; margin:28px auto; border-radius:var(--radius); overflow:hidden; box-shadow:0 20px 60px rgba(26,16,24,.2); aspect-ratio:16/9; position:relative; }
+.video-placeholder { width:100%; height:100%; background:linear-gradient(135deg,var(--escuro),var(--escuro-2)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; }
+.play-btn { width:76px; height:76px; border-radius:50%; background:rgba(255,255,255,.12); border:2.5px solid rgba(255,255,255,.4); display:flex; align-items:center; justify-content:center; transition:all .3s; }
+.play-btn svg { width:30px; height:30px; fill:#fff; margin-left:4px; }
+.video-placeholder:hover .play-btn { background:rgba(255,255,255,.22); border-color:#fff; transform:scale(1.05); }
+.video-placeholder p { color:rgba(255,255,255,.7); font-size:.9rem; }
+.video-placeholder small { color:rgba(255,255,255,.4); font-size:.78rem; }
+.video-frame { width:100%; height:100%; border:none; display:block; }
 
-/* CTA principal */
-.btn-whats-curso {
-  display:inline-flex; align-items:center; gap:12px;
-  background:linear-gradient(135deg,#25d366,#128c7e);
-  color:#fff; padding:16px 36px; border-radius:50px;
-  font-size:1.05rem; font-weight:700; text-decoration:none;
-  box-shadow:0 6px 24px rgba(37,211,102,.4);
-  transition:all .25s ease;
-}
-.btn-whats-curso:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(37,211,102,.5); color:#fff; }
-.btn-whats-curso svg { width:24px; height:24px; fill:#fff; flex-shrink:0; }
+.topics-section { padding:60px 24px; background:var(--rosa-pale); }
+.topics-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; max-width:720px; margin:32px auto 0; }
+.topic-card { background:var(--branco); border-radius:var(--radius); padding:22px 18px; box-shadow:var(--sombra); display:flex; align-items:flex-start; gap:14px; border-left:4px solid var(--rosa); transition:all var(--trans); }
+.topic-card:hover { transform:translateY(-3px); box-shadow:var(--sombra-lg); }
+.tc-icon { font-size:1.6rem; flex-shrink:0; }
+.topic-card h4 { font-size:.97rem; color:var(--escuro); margin-bottom:4px; }
+.topic-card p  { font-size:.82rem; color:var(--cinza); line-height:1.5; }
 
-/* ===== VÍDEO ===== */
-.video-section {
-  background:#fff;
-  padding:44px 20px;
-  text-align:center;
-  border-bottom:1px solid var(--cinza-b);
-}
-.video-section h2 {
-  font-size:1.6rem; color:var(--escuro); margin-bottom:10px;
-}
-.video-section p { color:var(--cinza-txt); margin-bottom:28px; font-size:.93rem; }
+.depo-section { padding:60px 24px; background:var(--branco); text-align:center; }
+.depo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; max-width:720px; margin:32px auto 32px; }
+.depo-card { background:var(--rosa-pale); border-radius:var(--radius); padding:22px; text-align:left; border:1.5px solid rgba(201,107,138,.12); }
+.estrelas { color:var(--ouro); font-size:.95rem; margin-bottom:10px; }
+.depo-card p { font-size:.88rem; color:var(--cinza); line-height:1.65; margin-bottom:12px; font-style:italic; }
+.depo-nome { font-weight:700; font-size:.85rem; color:var(--escuro); }
 
-.video-placeholder {
-  max-width:600px; margin:0 auto;
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--sombra-lg);
-  position:relative;
-  background: linear-gradient(135deg, #2d1f27, #4a2d3a);
-  aspect-ratio:16/9;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:16px; cursor:pointer;
-}
-.video-placeholder .play-btn {
-  width:72px; height:72px; border-radius:50%;
-  background:rgba(255,255,255,.15);
-  border:3px solid rgba(255,255,255,.5);
-  display:flex; align-items:center; justify-content:center;
-  transition:all .25s;
-}
-.video-placeholder:hover .play-btn {
-  background:rgba(255,255,255,.25);
-  border-color:#fff;
-  transform:scale(1.08);
-}
-.play-btn svg { width:28px; height:28px; fill:#fff; margin-left:4px; }
-.video-placeholder .vp-text { color:rgba(255,255,255,.8); font-size:.9rem; }
-.video-placeholder .vp-sub  { color:rgba(255,255,255,.45); font-size:.78rem; }
+.cta-final { padding:70px 24px; background:linear-gradient(135deg,var(--escuro),var(--escuro-2)); text-align:center; }
+.cta-final h2 { color:#fff; font-size:2.2rem; margin-bottom:12px; }
+.cta-final p  { color:rgba(255,255,255,.6); margin-bottom:28px; }
 
-/* Quando tiver URL do YouTube */
-.video-frame {
-  max-width:600px; margin:0 auto;
-  border-radius:var(--radius); overflow:hidden;
-  box-shadow:var(--sombra-lg); aspect-ratio:16/9;
-  display:none;
-}
-.video-frame iframe { width:100%; height:100%; border:none; display:block; }
-
-/* ===== O QUE VOCÊ VAI APRENDER ===== */
-.topics-section {
-  background:var(--cinza-f);
-  padding:44px 20px;
-}
-.topics-section h2 {
-  text-align:center; font-size:1.5rem; color:var(--escuro); margin-bottom:28px;
-}
-.topics-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:14px; max-width:700px; margin:0 auto;
-}
-.topic-card {
-  background:#fff; border-radius:var(--radius);
-  padding:20px 18px; box-shadow:var(--sombra);
-  display:flex; align-items:flex-start; gap:12px;
-  border-left:4px solid var(--rosa);
-}
-.topic-card .tc-icon { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
-.topic-card h4 { font-size:.95rem; color:var(--escuro); margin-bottom:3px; }
-.topic-card p  { font-size:.82rem; color:var(--cinza-txt); line-height:1.5; }
-
-/* ===== DEPOIMENTOS (placeholder) ===== */
-.depo-section {
-  background:#fff; padding:44px 20px; text-align:center;
-  border-top:1px solid var(--cinza-b);
-}
-.depo-section h2 { font-size:1.5rem; color:var(--escuro); margin-bottom:24px; }
-.depo-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:16px; max-width:700px; margin:0 auto 32px;
-}
-.depo-card {
-  background:var(--cinza-f); border-radius:var(--radius);
-  padding:20px; text-align:left;
-  border:1.5px solid var(--cinza-b);
-}
-.depo-card .estrelas { color:var(--ouro); font-size:1rem; margin-bottom:8px; }
-.depo-card p { font-size:.88rem; color:var(--cinza-txt); line-height:1.6; margin-bottom:12px; }
-.depo-card .depo-nome { font-weight:700; font-size:.85rem; color:var(--escuro); }
-
-/* ===== CTA FINAL ===== */
-.cta-section {
-  background:linear-gradient(135deg,#2d1f27,#4a2d3a);
-  padding:52px 24px; text-align:center;
-}
-.cta-section h2 { color:#fff; font-size:1.8rem; margin-bottom:12px; }
-.cta-section p  { color:rgba(255,255,255,.75); margin-bottom:28px; font-size:.95rem; }
-
-@media(max-width:480px){
-  .curso-hero h1 { font-size:1.75rem; }
-}
+@media(max-width:600px){ .curso-hero h1{font-size:2.2rem;} }
 </style>
 </head>
 <body>
-
 <div id="toast-container"></div>
 
-<!-- HEADER -->
 <header class="site-header">
-  <span class="logo" id="headerNome">Studio Pamela Vidal</span>
-  <nav>
-    <a href="index.html" style="color:var(--cinza-txt);font-size:.88rem;">← Início</a>
+  <div class="header-logo" id="headerNome">Studio <span>Pamela Vidal</span></div>
+  <nav class="header-nav">
+    <a href="index.html">← Início</a>
   </nav>
 </header>
 
-<!-- HERO DO CURSO -->
+<!-- HERO -->
 <section class="curso-hero">
   <span class="curso-tag">🎓 Formação Profissional</span>
-  <h1>Torne-se uma especialista<br>em <span>beleza</span></h1>
-  <p>
-    Aprenda as técnicas que usamos no Studio Pamela Vidal e leve sua carreira
-    para outro nível. Curso completo, do zero ao avançado. 💅
-  </p>
-
+  <h1 id="cursoHeroTitle">Torne-se uma especialista<br>em <em>beleza</em></h1>
+  <p id="cursoHeroDesc">Aprenda as técnicas do Studio Pamela Vidal e leve sua carreira para outro nível. Do zero ao avançado.</p>
   <div class="curso-badges">
     <span class="curso-badge-item">📹 Vídeo aulas</span>
     <span class="curso-badge-item">📋 Material de apoio</span>
     <span class="curso-badge-item">🏆 Certificado</span>
     <span class="curso-badge-item">👩‍🏫 Suporte da Pamela</span>
   </div>
-
-  <a href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Tenho%20interesse%20no%20curso%20e%20quero%20saber%20mais%20%F0%9F%8E%93"
-     target="_blank" class="btn-whats-curso">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <a id="cursoBtnHero" href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Quero%20saber%20mais%20sobre%20o%20curso%20%F0%9F%8E%93" target="_blank" class="btn btn-whats btn-lg">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Quero saber mais sobre o curso
   </a>
 </section>
 
 <!-- VÍDEO -->
 <section class="video-section">
-  <h2>Conheça o curso em vídeo</h2>
-  <p>Assista ao vídeo de apresentação e saiba tudo o que você vai aprender</p>
-
-  <!-- Placeholder (substituir por iframe do YouTube quando tiver o link) -->
-  <div class="video-placeholder" id="videoPlaceholder">
-    <div class="play-btn">
-      <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+  <span class="section-tag">Prévia</span>
+  <h2 class="section-title">Veja o curso em <em>ação</em></h2>
+  <p class="section-sub">Assista à apresentação e descubra tudo que você vai aprender</p>
+  <div class="video-wrap" id="videoWrap">
+    <div class="video-placeholder" id="videoPlaceholder">
+      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <p>Vídeo de apresentação do curso</p>
+      <small>Em breve disponível aqui ✨</small>
     </div>
-    <p class="vp-text">Vídeo de apresentação do curso</p>
-    <p class="vp-sub">Em breve disponível aqui ✨</p>
   </div>
-
-  <!-- Descomente e cole a URL do YouTube quando tiver: -->
-  <!--
-  <div class="video-frame" id="videoFrame">
-    <iframe src="https://www.youtube.com/embed/SEU_VIDEO_ID"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-  </div>
-  -->
 </section>
 
-<!-- O QUE VAI APRENDER -->
+<!-- TÓPICOS -->
 <section class="topics-section">
-  <h2>O que você vai aprender 📚</h2>
-  <div class="topics-grid">
-    <div class="topic-card">
-      <span class="tc-icon">💅</span>
-      <div>
-        <h4>Técnicas de Unhas</h4>
-        <p>Esmaltação em gel, fibra, acrílico e nail art profissional</p>
-      </div>
-    </div>
-    <div class="topic-card">
-      <span class="tc-icon">💄</span>
-      <div>
-        <h4>Maquiagem</h4>
-        <p>Make para festas, noivas, dia a dia e técnicas avançadas</p>
-      </div>
-    </div>
-    <div class="topic-card">
-      <span class="tc-icon">🧴</span>
-      <div>
-        <h4>Cuidados com a Pele</h4>
-        <p>Skincare, hidratação e tratamentos faciais</p>
-      </div>
-    </div>
-    <div class="topic-card">
-      <span class="tc-icon">💼</span>
-      <div>
-        <h4>Gestão do Negócio</h4>
-        <p>Como precificar, fidelizar clientes e crescer no mercado</p>
-      </div>
-    </div>
-    <div class="topic-card">
-      <span class="tc-icon">📱</span>
-      <div>
-        <h4>Marketing Digital</h4>
-        <p>Instagram, atendimento online e como atrair clientes</p>
-      </div>
-    </div>
-    <div class="topic-card">
-      <span class="tc-icon">🏆</span>
-      <div>
-        <h4>Certificado</h4>
-        <p>Receba seu certificado ao concluir todas as aulas</p>
-      </div>
-    </div>
+  <div style="text-align:center;">
+    <span class="section-tag">Conteúdo</span>
+    <h2 class="section-title">O que você vai <em>aprender</em></h2>
   </div>
+  <div class="topics-grid" id="topicsGrid"></div>
 </section>
 
 <!-- DEPOIMENTOS -->
 <section class="depo-section">
-  <h2>O que dizem nossas alunas 💕</h2>
-  <div class="depo-grid">
-    <div class="depo-card">
-      <div class="estrelas">★★★★★</div>
-      <p>"O curso mudou minha vida! Hoje tenho minha própria clientela e faturamento estável."</p>
-      <span class="depo-nome">— Juliana M.</span>
-    </div>
-    <div class="depo-card">
-      <div class="estrelas">★★★★★</div>
-      <p>"A Pamela explica tudo com muita clareza. Aprendi do zero e já estou atendendo clientes!"</p>
-      <span class="depo-nome">— Fernanda S.</span>
-    </div>
-    <div class="depo-card">
-      <div class="estrelas">★★★★★</div>
-      <p>"Vale cada centavo. O suporte é incrível e as aulas são práticas e objetivas."</p>
-      <span class="depo-nome">— Carla R.</span>
-    </div>
-  </div>
-
-  <a href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Tenho%20interesse%20no%20curso%20e%20quero%20saber%20mais%20%F0%9F%8E%93"
-     target="_blank" class="btn-whats-curso" style="margin-top:8px;">
-    <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:#fff;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="section-tag">Alunas</span>
+  <h2 class="section-title">Quem já <em>transformou</em> sua carreira</h2>
+  <div class="depo-grid" id="depoGrid"></div>
+  <a id="cursoBtnDepo" href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Quero%20saber%20mais%20sobre%20o%20curso%20%F0%9F%8E%93" target="_blank" class="btn btn-whats btn-lg">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Quero me inscrever agora!
   </a>
 </section>
 
 <!-- CTA FINAL -->
-<section class="cta-section">
-  <h2>Pronta para transformar sua carreira? ✨</h2>
-  <p>Entre em contato agora e garanta sua vaga no próximo turma.</p>
-  <a href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Tenho%20interesse%20no%20curso%20e%20quero%20saber%20mais%20%F0%9F%8E%93"
-     target="_blank" class="btn-whats-curso">
-    <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:#fff;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<section class="cta-final">
+  <h2>Pronta para <em style="color:var(--rosa-light);">transformar</em><br>sua carreira? ✨</h2>
+  <p>Entre em contato agora e garanta sua vaga na próxima turma.</p>
+  <a id="cursoBtnFinal" href="https://wa.me/5551980179922?text=Ol%C3%A1%20Pamela!%20Quero%20saber%20mais%20sobre%20o%20curso%20%F0%9F%8E%93" target="_blank" class="btn btn-whats btn-lg">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Falar com a Pamela agora
   </a>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
-  <p><strong style="color:#fff;">Studio Pamela Vidal</strong></p>
-  <p>
-    <a href="https://instagram.com/Studio_pamelavidal_" target="_blank">@Studio_pamelavidal_</a>
-    &nbsp;·&nbsp;
-    <a href="index.html">Voltar ao início</a>
-  </p>
+  <div class="footer-bottom">
+    <p><strong>Studio Pamela Vidal</strong> · <a href="https://instagram.com/Studio_pamelavidal_" target="_blank">@Studio_pamelavidal_</a> · <a href="index.html">Voltar ao início</a></p>
+  </div>
 </footer>
 
 <script src="js/app.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const nome = localStorage.getItem('nomeStudio') || 'Studio Pamela Vidal';
-  document.getElementById('headerNome').textContent = nome;
+  document.getElementById('headerNome').innerHTML = `${nome.split(' ')[0]} <span>${nome.split(' ').slice(1).join(' ')}</span>`;
+  document.title = 'Curso — ' + nome;
 
-  // Quando tiver o link do YouTube, descomente abaixo:
-  // const youtubeId = 'SEU_VIDEO_ID_AQUI';
-  // document.getElementById('videoPlaceholder').style.display = 'none';
-  // document.getElementById('videoFrame').style.display = 'block';
+  // Conteúdo editável pelo admin
+  const titulo  = localStorage.getItem('cursoTitulo');
+  const desc    = localStorage.getItem('cursoDesc');
+  const videoId = localStorage.getItem('cursoVideoId');
+  const ctaTxt  = localStorage.getItem('cursoCtaTexto');
+
+  if (titulo) document.getElementById('cursoHeroTitle').innerHTML = titulo;
+  if (desc)   document.getElementById('cursoHeroDesc').textContent = desc;
+
+  if (ctaTxt) {
+    ['cursoBtnHero','cursoBtnDepo','cursoBtnFinal'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.lastChild.textContent = ' ' + ctaTxt;
+    });
+  }
+
+  // Vídeo YouTube
+  if (videoId) {
+    document.getElementById('videoPlaceholder').innerHTML =
+      `<iframe class="video-frame" src="https://www.youtube.com/embed/${videoId}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
+  }
+
+  // Tópicos
+  const defTopicos = [
+    {emoji:'💅',titulo:'Técnicas de Unhas',desc:'Esmaltação em gel, fibra, acrílico e nail art'},
+    {emoji:'💄',titulo:'Maquiagem',desc:'Make para festas, noivas e dia a dia'},
+    {emoji:'🧴',titulo:'Cuidados com a Pele',desc:'Skincare, hidratação e tratamentos'},
+    {emoji:'💼',titulo:'Gestão do Negócio',desc:'Como precificar e fidelizar clientes'},
+    {emoji:'📱',titulo:'Marketing Digital',desc:'Instagram e como atrair clientes'},
+    {emoji:'🏆',titulo:'Certificado',desc:'Receba seu certificado ao concluir'},
+  ];
+  const topicos = JSON.parse(localStorage.getItem('cursoTopicos') || '[]');
+  const lista   = topicos.length ? topicos : defTopicos;
+  document.getElementById('topicsGrid').innerHTML = lista.map(t =>
+    `<div class="topic-card"><span class="tc-icon">${t.emoji||'✨'}</span><div><h4>${t.titulo}</h4><p>${t.desc}</p></div></div>`
+  ).join('');
+
+  // Depoimentos
+  const defDepos = [
+    {nome:'Juliana M.',texto:'O curso mudou minha vida! Hoje tenho minha própria clientela e faturamento estável.'},
+    {nome:'Fernanda S.',texto:'A Pamela explica tudo com muita clareza. Aprendi do zero e já estou atendendo clientes!'},
+    {nome:'Carla R.',texto:'Vale cada centavo. O suporte é incrível e as aulas são práticas e objetivas.'},
+  ];
+  const depos = JSON.parse(localStorage.getItem('cursoDepos') || '[]');
+  const dLista = depos.length ? depos : defDepos;
+  document.getElementById('depoGrid').innerHTML = dLista.map(d =>
+    `<div class="depo-card"><div class="estrelas">★★★★★</div><p>"${d.texto}"</p><span class="depo-nome">— ${d.nome}</span></div>`
+  ).join('');
 });
 </script>
 </body>
 </html>
-
