@@ -3,46 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Criar Conta — Studio</title>
+<title>Criar Conta — Studio Pamela Vidal</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.auth-wrap {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(160deg,#fff8fb,var(--rosa-light),#f9dde8);
+  padding:24px;
+}
+.auth-card {
+  background:var(--branco); border-radius:28px;
+  box-shadow:0 20px 60px rgba(180,90,120,.15);
+  padding:40px 36px; width:100%; max-width:420px;
+}
+.auth-logo { text-align:center; margin-bottom:28px; }
+.auth-logo h1 { font-size:1.8rem; color:var(--escuro); margin-bottom:4px; }
+.auth-logo h1 span { color:var(--rosa); font-style:italic; }
+.auth-logo p { color:var(--cinza); font-size:.88rem; }
+</style>
 </head>
 <body>
 <div id="toast-container"></div>
-
-<div class="container">
-  <a href="index.html" class="btn-voltar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Voltar
-  </a>
-
-  <h1 class="page-title">Criar Conta</h1>
-  <p class="page-subtitle">Preencha os dados para se cadastrar</p>
-
-  <div class="field">
-    <label>Nome completo</label>
-    <input type="text" id="nome" placeholder="Seu nome" autocomplete="name">
-  </div>
-  <div class="field">
-    <label>Celular</label>
-    <input type="tel" id="celular" placeholder="(51) 99999-9999" autocomplete="tel">
-  </div>
-  <div class="field">
-    <label>Senha</label>
-    <input type="password" id="senha" placeholder="Crie uma senha" autocomplete="new-password">
-  </div>
-  <div class="field">
-    <label>Confirmar senha</label>
-    <input type="password" id="confirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
-  </div>
-
-  <button class="form-btn" onclick="cadastrar()">Criar minha conta</button>
-
-  <div class="form-link">
-    Já tem conta? <a href="login.html">Entrar</a>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <a href="index.html" class="btn-voltar" style="margin-bottom:20px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </a>
+      <h1>Criar <span>conta</span> ✨</h1>
+      <p>Preencha os dados para se cadastrar</p>
+    </div>
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="nome" placeholder="Seu nome" autocomplete="name">
+    </div>
+    <div class="field">
+      <label>Celular</label>
+      <input type="tel" id="celular" placeholder="(51) 99999-9999" autocomplete="tel">
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <input type="password" id="senha" placeholder="Crie uma senha" autocomplete="new-password">
+    </div>
+    <div class="field">
+      <label>Confirmar senha</label>
+      <input type="password" id="confirmarSenha" placeholder="Repita a senha" autocomplete="new-password">
+    </div>
+    <button class="btn btn-primary btn-full" style="padding:15px;" onclick="cadastrar()">Criar minha conta</button>
+    <div class="form-link">Já tem conta? <a href="login.html">Entrar</a></div>
   </div>
 </div>
-
 <script src="js/app.js"></script>
 </body>
 </html>
-
